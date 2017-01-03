@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.*;
 import scala.concurrent.duration.Duration;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -28,24 +29,26 @@ public class Producer extends Thread {
     }
 
 
-    ActorSystem actorSystem = ActorSystem.create("Hello");
-
     @Override
     public void run() {
 //        int messageNo = 1;
 
         long currentTime;
 
+        Random random = new Random();
+
+
         while (true) {
             currentTime = System.currentTimeMillis();
 
 //            try {
-//                Thread.sleep(1000);
+//                Thread.sleep(100);
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
 
-            String messageStr = "Message_" + currentTime;
+
+            String messageStr = "Message_" + random.nextInt(100);
             long startTime = System.currentTimeMillis();
 
             if (isAsync) {  // Send asynchronously

@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Consumer extends ShutdownableThread {
 
-    private final KafkaConsumer<Long, Long> consumer;
+    private final KafkaConsumer<Long, String> consumer;
     private final String topic;
     private final String groupId;
 
@@ -26,7 +26,7 @@ public class Consumer extends ShutdownableThread {
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.LongDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.LongDeserializer");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
         consumer = new KafkaConsumer<>(props);
         this.topic = topic;
@@ -36,9 +36,10 @@ public class Consumer extends ShutdownableThread {
     @Override
     public void doWork() {
         consumer.subscribe(Collections.singletonList(this.topic));
-        ConsumerRecords<Long, Long> records = consumer.poll(1000);
-        for (ConsumerRecord<Long, Long> record : records) {
-            System.out.println(groupId + " received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
+        ConsumerRecords<Long, String> records = consumer.poll(1000);
+        for (ConsumerRecord<Long, String> record : records) {
+            System.out.println(
+                    groupId + " received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
         }
     }
 

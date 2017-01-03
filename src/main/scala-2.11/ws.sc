@@ -1,13 +1,11 @@
-case class A()
+import scala.util.Random
 
-case class B()
+val random = new Random()
 
-val a = A()
-val b = B()
-
-a match {
-  case x: A  B ⇒
-    println(x)
-  case _ ⇒
-    println("unknown")
-}
+random.nextInt(100)
+random.nextInt(100)
+random.nextInt(100)
+random.nextInt(100)
+random.nextInt(100)
+random.nextInt(100)
+random.nextInt(100)
