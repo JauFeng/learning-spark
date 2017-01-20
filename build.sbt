@@ -30,5 +30,14 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % "2.4.16",
   "com.typesafe.akka" %% "akka-distributed-data-experimental" % "2.4.16",
   "com.typesafe.akka" %% "akka-typed-experimental" % "2.4.16",
-  "com.typesafe.akka" %% "akka-persistence-query-experimental" % "2.4.16"
+  "com.typesafe.akka" %% "akka-persistence-query-experimental" % "2.4.16",
+
+  "com.typesafe.akka" %% "akka-http-core" % "10.0.1",
+  "com.typesafe.akka" %% "akka-http" % "10.0.1",
+  "com.typesafe.akka" %% "akka-http-testkit" % "10.0.1",
+  "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.1",
+  "com.typesafe.akka" %% "akka-http-jackson" % "10.0.1",
+  "com.typesafe.akka" %% "akka-http-xml" % "10.0.1",
+
+  "com.google.inject" % "guice" % "4.1.0"
 )
